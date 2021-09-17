@@ -1,27 +1,34 @@
-calculationInputO = input("Input calculation: ")
+import re
 
-calculationInput = "+ " + calculationInputO
+calculation_input = input('Input calc :')
+result = re.split('(\W)', calculation_input)
 
-calculation = calculationInput.split(" ")
+result_length = len(result)
 
-calculataionLen = len(calculation)
-calculataionLen = calculataionLen
+for count in range(result_length):
+    if result[count] == '*':
+        multiply_result = int(result[count-1]) * int(result[count+1])
+        result[count] = multiply_result
+        del result[count-1]
+        del result[count]
+    if result[count] == '/':
+        divide_result = int(result[count-1]) / int(result[count+1])
+        result[count] = divide_result
+        del result[count-1]
+        del result[count]
+    print(count)
 
-count = 0
-result = 0
+result_length = len(result)
 
-while count <= calculataionLen:
-    if calculation[count - 1] == "+" and count % 2 != 0:
-        result = int(result) + int(calculation[count])
-
-    if calculation[count - 1] == "-" and count % 2 != 0:
-        result = int(result) - int(calculation[count])
-
-    if calculation[count - 1] == "*" and count % 2 != 0:
-        result = int(result) * int(calculation[count])
-
-    if calculation[count - 1] == "/" and count % 2 != 0:
-        result = int(result) / int(calculation[count])
-    count += 1
-
-print(result)
+for count in range(result_length):
+    if result[count] == '+':
+        multiply_result = int(result[count-1]) + int(result[count+1])
+        result[count] = multiply_result
+        del result[count-1]
+        del result[count]
+    if result[count] == '-':
+        divide_result = int(result[count-1]) - int(result[count+1])
+        result[count] = divide_result
+        del result[count-1]
+        del result[count]
+    print(count)
